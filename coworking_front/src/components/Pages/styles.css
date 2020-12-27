@@ -1,0 +1,204 @@
+
+.main-block {
+  display: flex;
+  flex-flow: column nowrap;
+  row-gap: 2em;
+  width: 90%;
+  margin: auto;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 50px;
+}
+
+.main-block > * {
+  width: 50%;
+}
+
+.main-block > .btn {
+  width: 30%;
+}
+
+.main-block .todo-table .field {
+  padding: 0;
+  margin: 0;
+}
+
+.main-block .todo-table .field  input {
+  padding: 0;
+  margin: 0;
+  max-width: 300px;
+}
+
+ .todo-table td {
+  vertical-align: bottom;
+  text-align: center;
+}
+
+.todo-table th {
+  text-align: center;
+}
+
+.todo-table select {
+  min-width: 300px;
+}
+
+.todo {
+  display: flex;
+  width: 100%;
+  padding: 2em;
+  column-gap: 2em;
+  /* justify-content: space-between; */
+  background: lightgrey;
+  border-radius: 16px;
+  align-items: center;
+}
+
+.todo-add {
+text-align: right;
+}
+
+.create {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.title {
+  flex: 1;
+  font-size: 1.5em;
+  display: flex;
+  align-items: center;
+  font-size: 1.5em;
+}
+
+.create :last-child {
+  flex: 0.7;
+}
+
+
+/* NEW MENU */
+
+@import url('https://fonts.googleapis.com/css?family=Inconsolata|Lato:300,400,700');
+
+body {
+	font-family: 'Lato', sans-serif;
+	box-sizing: border-box;
+}
+
+/* Appearance */
+.links {
+  font-size: 62.5%;
+	background-color: #123;
+	background-image: linear-gradient(to bottom, #0003, transparent);
+	border-bottom: 1px solid #0003;
+	box-shadow: 0 0 32px #0003;
+	font-size: 2em;
+	font-weight: 300;
+}
+.links > a {
+	color: #9ab;
+	padding: .75em;
+	text-align: center;
+	text-decoration: none;
+	transition: all .5s;
+}
+.links > a:hover {
+	background: #ffffff06;
+	color: #adf;
+}
+.links > .line {
+	background: #68a;
+	height: 3px;
+	pointer-events: none;
+}
+
+/* The Magic */
+#header {
+	top: 0;
+	left: 0;
+  right: 0;
+  margin-bottom: 100px;
+}
+.links {
+	display: grid;
+	grid-template-columns: repeat(var(--items), 1fr);
+	position: relative;
+}
+.links > .line {
+	opacity: 0;
+	transition: all .5s;
+	position: absolute;
+	bottom: 0;
+	left: var(--left, calc(100% / var(--items) * (var(--index) - 1)));
+	width: var(--width, calc(100% / var(--items)));
+	--index: 0;
+}
+.links > a:hover ~ .line {
+	opacity: 1;
+}
+
+.links > a:nth-of-type(1):hover ~ .line { --index: 1; }
+.links > a:nth-of-type(2):hover ~ .line { --index: 2; }
+.links > a:nth-of-type(3):hover ~ .line { --index: 3; }
+.links > a:nth-of-type(4):hover ~ .line { --index: 4; }
+.links > a:nth-of-type(5):hover ~ .line { --index: 5; }
+.links > a:nth-of-type(6):hover ~ .line { --index: 6; }
+.links > a:nth-of-type(7):hover ~ .line { --index: 7; }
+.links > a:nth-of-type(8):hover ~ .line { --index: 8; }
+.links > a:nth-of-type(9):hover ~ .line { --index: 9; }
+.links > a:nth-of-type(10):hover ~ .line { --index: 10; }
+.links > a:last-of-type:hover ~ .line { --index: var(--items); }
+
+
+.mainTitle {
+    font-size: 2em;
+    text-transform: uppercase;
+    text-align: center;
+}
+
+.buttons {
+  margin: 25px 0;
+  display: flex;
+  justify-content: center;
+  column-gap: 10px;
+}
+
+.radio {
+  font-size: 1.5em;
+  display: flex;
+  column-gap: 1em;
+  align-items: center;
+}
+
+.repair-table tr td:nth-child(2) {
+  width: 125px;
+  max-width: 125px;
+  text-overflow: clip;
+}
+
+.openTodo th {
+  font-weight: 300;
+}
+
+tr:hover {
+  cursor: pointer;
+}
+
+.response {
+  margin-top: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #123;
+  color: white;
+  text-transform: uppercase;
+  font-size: 2em;
+  border-radius: 50px;
+  transition: all 1s linear;
+  height: 100px;
+  width: 300px;
+}
+
+.response-hidden {
+  background: white;
+}
