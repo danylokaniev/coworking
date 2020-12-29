@@ -13,17 +13,17 @@ const Registration = (props) => {
     const [inputs, changeInputs] = useState({
         email: '',
         password: '',
-        address: '',
+        name: '',
         phone: '',
         type: '',
         checkCode: ''
     }) 
 
-    const loginUser = async (email, password, address, phone, type, checkCode) => {
-        fetch('http://localhost:9000/users?' +  new URLSearchParams({
+    const loginUser = async (email, password, name, phone, type, checkCode) => {
+        fetch('http://localhost:10000/users?' +  new URLSearchParams({
             email,
             password,
-            address,
+            name,
             phone,
             type,
             checkCode,
@@ -34,13 +34,14 @@ const Registration = (props) => {
             .then(json => setTimeout(() => {console.log(json); handleResponse(json)}, 1000))
     }
 
-    const handleResponse = ({response, success}) => {
+    const handleResponse = ({response, success,sessionToken}) => {
         startLoader(false)
         if(success){
             console.log('+')
             localStorage.setItem('email', response.email)
             localStorage.setItem('type', response.type)
             localStorage.setItem('id', response.id)
+            localStorage.setItem('sessionToken', sessionToken)
             history.push('/main')
             
             return 
@@ -73,12 +74,12 @@ const Registration = (props) => {
         setTimeout(() => setResponse(''), 5000)
         startLoader(true)
 
-        loginUser(inputs.email, inputs.password, inputs.address, inputs.phone, inputs.type, inputs.checkCode)
+        loginUser(inputs.email, inputs.password, inputs.name, inputs.phone, inputs.type, inputs.checkCode)
 
         changeInputs({
             email: '',
             password: '',
-            address: '',
+            name: '',
             phone: '',
             type: '',
             checkCode: ''
@@ -95,13 +96,13 @@ const Registration = (props) => {
                     <Input placeholder={'Введите password'} onChange={handleInputs} value={inputs.password} name={'password'} type={'password'}/>
                 </div>
                 <div className="form-group">
-                    <Input placeholder={'Введите address'} onChange={handleInputs} value={inputs.address} name={'address'}/>
+                    <Input placeholder={'Введите name'} onChange={handleInputs} value={inputs.name} name={'name'}/>
                 </div>
                 <div className="form-group">
                     <Input placeholder={'Введите phone'} onChange={handleInputs} value={inputs.phone} name={'phone'}/>
                 </div>
                 <div className="form-group">
-                    <Select onChange={handleInputs} value={inputs.type} name={'type'} opts={[{value: 'client', text: 'Клієнт'},{value: 'manager', text: 'Менеджер'},{value: 'repair', text: 'Ремонтник'}]}/>
+                    <Select onChange={handleInputs} value={inputs.type} name={'type'} opts={[{value: 'client', text: 'Клієнт'},{value: 'manager', text: 'Менеджер'},{value: 'guide', text: 'Екскурсовод'}]}/>
                 </div>
                 {
                     (inputs.type == 'repair' || inputs.type == 'manager') && 

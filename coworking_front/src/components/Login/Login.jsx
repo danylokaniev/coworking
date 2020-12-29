@@ -18,7 +18,7 @@ const Login = (props) => {
 
 
     const loginUser = async (email, password) => {
-        fetch('http://localhost:9000/users?' +  new URLSearchParams({
+        fetch('http://localhost:10000/users?' +  new URLSearchParams({
             email,
             password,
         }))
@@ -31,7 +31,7 @@ const Login = (props) => {
         localStorage.clear()
     }, [])
 
-    const handleResponse = ({response, success}) => {
+    const handleResponse = ({response, success, sessionToken}) => {
 
         startLoader(false)
         if(success){
@@ -39,6 +39,7 @@ const Login = (props) => {
             localStorage.setItem('email', response.email)
             localStorage.setItem('type', response.type)
             localStorage.setItem('id', response.id)
+            localStorage.setItem('sessionToken', sessionToken)
 
             changeInputs({
                 email: '',

@@ -3,6 +3,7 @@ package com.example.demo.classes.person;
 import com.example.demo.classes.PersonType;
 import com.example.demo.classes.passwordService.PasswordService;
 import com.example.demo.classes.repos.PersonRepo;
+import com.example.demo.classes.token.TokenService;
 import org.springframework.boot.configurationprocessor.json.JSONException;
 import org.springframework.boot.configurationprocessor.json.JSONObject;
 import org.springframework.stereotype.Service;
@@ -54,6 +55,7 @@ public class PersonService {
                             .put("type", type)
                             .put("id", person.getId()))
                     .put("success", successRegister)
+                    .put("sessionToken", TokenService.generateToken())
                     .toString();
         }
     }
@@ -145,6 +147,7 @@ public class PersonService {
                         .put("type", person.getType())
                         .put("id", person.getId()))
                 .put("success", successLogin)
+                .put("sessionToken", TokenService.generateToken())
                 .toString();
     }
 

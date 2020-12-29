@@ -1,10 +1,15 @@
 package com.example.demo.classes.person;
 
 import com.example.demo.classes.PersonType;
+import com.example.demo.classes.token.TokenService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.configurationprocessor.json.JSONException;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.Date;
+import java.util.UUID;
 
 
 @RestController
@@ -29,8 +34,13 @@ public class PersonController {
     }
 
     @GetMapping("/type")
-    public ResponseEntity<String> getTypes(@RequestParam PersonType type) throws Exception{
-        return ResponseEntity.ok(service.listOfTypes(type));
+    public ResponseEntity<String> getTypes(@RequestParam PersonType type, @RequestParam(defaultValue = "") UUID token) throws Exception{
+        if(TokenService.checkToken(token)) {
+            return ResponseEntity.ok(service.listOfTypes(type));
+        } else {
+            return new ResponseEntity(HttpStatus.UNAUTHORIZED);
+        }
+
     }
 
     @GetMapping("/getInfo")
@@ -46,6 +56,12 @@ public class PersonController {
     @DeleteMapping
     public ResponseEntity<Boolean> deleteUserByEmail(@RequestParam String email) {
         return ResponseEntity.ok(service.deleteByEmail(email));
+    }
+
+
+    @DeleteMapping("/bred")
+    public ResponseEntity<String> deleteUserByEmail(@RequestParam Date email) {
+        return ResponseEntity.ok(email.toString());
     }
 
 

@@ -7,7 +7,8 @@ import Orders from './Orders'
 import Contact from './Contact'
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 import RepairOrders from './RepairOrders'
-import ClientOrders from './ClientOrders'
+import ClientPlaces from './ClientPlaces'
+import Coworking from './Coworking'
 
 const Main = (props) => {
     let history = useHistory()
@@ -38,7 +39,7 @@ const Main = (props) => {
                         <header id="header">
                             <nav className="links" style={{'--items': 4}}>
                                 <a onClick={() => history.push('/main')} href="">Головна</a>
-                                <a onClick={() => history.push('/orders')} href="">Мої замовлення</a>
+                                <a onClick={() => history.push('/places')} href="">Коворкінг</a>
                                 <a onClick={() => history.push('/create')} href="">Створити замовлення</a>
                                 <a onClick={() => history.push('/contact')} href="">Контакти</a>
                                 <span className="line"></span>
@@ -47,8 +48,8 @@ const Main = (props) => {
                         <Route path="/main" exact>
                             <div>Головна</div>
                         </Route>   
-                        <Route path="/orders" exact>
-                            <ClientOrders />
+                        <Route path="/places" exact>
+                            <ClientPlaces />
                         </Route>         
                         <Route path="/contact" exact>
                             <Contact />
@@ -65,8 +66,8 @@ const Main = (props) => {
                         <header id="header">
                             <nav className="links" style={{'--items': 4}}>
                                 <a onClick={() => history.push('/main')} href="">Головна</a>
-                                <a onClick={() => history.push('/orders')} href="">Замовлення</a>
-                                <a onClick={() => history.push('/todo')} href="">Послуги</a>
+                                <a onClick={() => history.push('/coworking')} href="">Коворкінг</a>
+                                <a onClick={() => history.push('/todo')} href="">Екскурсії</a>
                                 <a onClick={() => history.push('/contact')} href="">Контакти</a>
                                 <span className="line"></span>
                             </nav>
@@ -74,8 +75,8 @@ const Main = (props) => {
                         <Route path="/main" exact>
                             <div>Головна</div>
                         </Route>       
-                        <Route path="/orders" exact>
-                            <Orders />
+                        <Route path="/coworking" exact>
+                            <Coworking />
                         </Route>     
                         <Route path="/todo" exact>
                             <CreateTodo />
